@@ -2,3 +2,7 @@ node_modules
 
 # next.js
 .next
+
+#other stuffs
+
+.DS_store
