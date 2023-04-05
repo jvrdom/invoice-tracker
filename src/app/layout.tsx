@@ -1,5 +1,4 @@
-import RootStyleRegistry from './components/emotion';
-import "./globals.css";
+import RootStyleRegistry from "./components/emotion";
 
 export const metadata = {
   title: "Create Next App",
