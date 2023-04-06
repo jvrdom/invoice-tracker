@@ -6,3 +6,4 @@ node_modules
 #other stuffs
 
 .DS_store
+src/pages/api/auth/[...nextauth].ts
