@@ -15,7 +15,7 @@ export default function Bruno() {
   return (
     <>
       Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
+      <button onClick={() => signIn("cognito")}>Sign in</button>
     </>
   );
 }
