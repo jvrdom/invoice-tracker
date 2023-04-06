@@ -1,11 +1,10 @@
 import Link from "next/link";
-import Button from "./components/button";
 
 export default function Home() {
   return (
     <main>
-      <Button />
-      <Link href={"/bruno"}>Bruno</Link>
+      <Link href={"/login"}>login</Link>
+      <h1>tenemos que meter algo en esta pagina che</h1>
     </main>
   );
 }
