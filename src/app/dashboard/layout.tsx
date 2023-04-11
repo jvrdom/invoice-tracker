@@ -1,3 +1,4 @@
+import Grid from "../components/Layout/grid";
 import Header from "../components/Layout/header";
 
 export const metadata = {
@@ -14,7 +15,7 @@ export default function RootLayout({
   return (
     <>
       <Header />
-      {children}
+      <Grid>{children}</Grid>
     </>
   );
 }
