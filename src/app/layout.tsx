@@ -1,6 +1,8 @@
 "use client";
 import { SessionProvider } from "next-auth/react";
+import { Suspense } from "react";
 import RootStyleRegistry from "./components/emotion";
+import Loading from "./loading";
 
 // export const metadata = {
 //   title: "Create Next App",
@@ -18,9 +20,11 @@ export default function RootLayout({
     <html lang="en">
       <head></head>
       <body>
-        <SessionProvider session={session}>
-          <RootStyleRegistry>{children}</RootStyleRegistry>
-        </SessionProvider>
+        <Suspense fallback={<Loading />}>
+          <SessionProvider session={session}>
+            <RootStyleRegistry>{children}</RootStyleRegistry>
+          </SessionProvider>
+        </Suspense>
       </body>
     </html>
   );
