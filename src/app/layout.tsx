@@ -1,4 +1,5 @@
 "use client";
+import { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { Suspense } from "react";
 import RootStyleRegistry from "./components/emotion";
@@ -14,7 +15,7 @@ export default function RootLayout({
   session,
 }: {
   children: React.ReactNode;
-  session: any;
+  session: Session | null;
 }): JSX.Element {
   return (
     <html lang="en">
