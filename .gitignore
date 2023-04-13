@@ -9,3 +9,4 @@ node_modules
 src/pages/api/auth/[...nextauth].ts
 .env.local
 .env
+setup-test-env.js
