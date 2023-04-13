@@ -1,6 +1,11 @@
 import { v1 as uuidv1 } from "uuid";
 import { Invoice, InvoiceStatus } from "../types/invoice";
-import { createInvoice, deleteInvoice, getInvoice } from "./invoiceRepository";
+import {
+  createInvoice,
+  deleteInvoice,
+  getInvoice,
+  getUseInvoices,
+} from "./invoiceRepository";
 
 const INVOICE_ID = uuidv1();
 const INVOICE_USER = "jest@test.com";
@@ -26,6 +31,18 @@ test("Get invoice", async () => {
 
   expect(invoice.user).toBe(INVOICE_USER);
   expect(invoice.id).toBe(INVOICE_ID);
+});
+
+test("Get invoices by user", async () => {
+  const invoices = await getUseInvoices(INVOICE_USER);
+
+  expect(invoices[0].id).toBe(INVOICE_ID);
+  expect(invoices.count).toBe(1);
+});
+
+test("Get invoices by wrong user", async () => {
+  const invoices = await getUseInvoices("bad@user.com");
+  expect(invoices.count).toBe(0);
 });
 
 test("Delete invoice", async () => {

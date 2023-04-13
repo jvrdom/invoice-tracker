@@ -1,5 +1,6 @@
 import { Invoice, InvoiceDB } from "@/types/invoice";
 import * as dynamoose from "dynamoose";
+import { QueryResponse } from "dynamoose/dist/ItemRetriever";
 import "./connect";
 import { invoiceSchema } from "./schemas";
 
@@ -13,8 +14,10 @@ export const getInvoice = async (id: string): Promise<InvoiceDB> => {
   return invoiceModel.get(id);
 };
 
-export const getUseInvoices = async (email: string): Promise<InvoiceDB> => {
-  return invoiceModel.get(email);
+export const getUseInvoices = async (
+  email: string
+): Promise<QueryResponse<InvoiceDB>> => {
+  return await invoiceModel.query("user").eq(email).exec();
 };
 
 export const deleteInvoice = async (id: string): Promise<void> => {
