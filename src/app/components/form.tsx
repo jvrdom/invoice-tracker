@@ -1,5 +1,6 @@
 "use client";
 
+import { InvoiceStatus } from "@/types/invoice";
 import {
   Button,
   Group,
@@ -11,8 +12,9 @@ import {
 } from "@mantine/core";
 import { Dropzone, MIME_TYPES } from "@mantine/dropzone";
 import { useForm } from "@mantine/form";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Download, Send, X } from "tabler-icons-react";
+import { createInvoice } from "../controllers/invoice";
 
 const useStyles = createStyles((theme) => ({
   form: {
@@ -45,6 +47,9 @@ const formConfig = {
     invoice: undefined,
   },
 
+  /**
+   * we need to validate that the user uploads only one invoice at a time
+   */
   validate: {
     invoice: (value: unknown) =>
       value === undefined ? "Please attach an invoice" : null,
@@ -56,9 +61,17 @@ export default function Form() {
   const openRef = useRef<() => void>(null);
   const form = useForm<FormValues>(formConfig);
   const hastErrorInvoice = Object.hasOwn(form.errors, "invoice");
+  const [isLoading, setLoading] = useState(false);
 
   const onSubmit = (values: FormValues) => {
     console.log("values", values);
+    createInvoice({
+      id: "3",
+      user: "bruno.viera@sngular.com",
+      invoicePath: "/as/ds/ds/aa.pdf",
+      status: InvoiceStatus.Created,
+      notes: "",
+    });
   };
 
   return (
